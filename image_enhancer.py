@@ -89,10 +89,118 @@
 
 
 
+# import streamlit as st
+# from PIL import Image
+# import os
+# import subprocess
+
+# # Set page configuration
+# st.set_page_config(
+#     page_title="Image Enhancer",
+#     page_icon="✨",
+#     layout="centered",
+# )
+
+# # Main container
+# with st.container():
+#     # Add a header with some styling
+#     st.markdown(
+#         """
+#         <h1 style="text-align: center; color: #4CAF50;">✨ Image Enhancer ✨</h1>
+#         <p style="text-align: center; color: #555;">Enhance your images effortlessly using advanced Real-ESRGAN models.</p>
+#         """,
+#         unsafe_allow_html=True,
+#     )
+
+# # Upload section
+# st.markdown("### 📤 Upload Your Image")
+# uploaded_file = st.file_uploader(
+#     "Choose an image file to enhance",
+#     type=["jpg", "png", "jpeg"],
+#     help="Supported formats: JPG, PNG, JPEG",
+# )
+
+# # Enhancement options section
+# st.markdown("### ⚙️ Choose Enhancement Settings")
+# enhancement_options = ["x2", "x3", "x4"]
+# selected_model = st.selectbox(
+#     "Select enhancement scale:",
+#     enhancement_options,
+#     help="Scale refers to the level of upscaling applied to the image.",
+# )
+
+# # Enhance button
+# if uploaded_file:
+#     st.markdown("### 🔮 Process Your Image")
+#     if st.button("Enhance Image"):
+#         with st.spinner("Enhancing your image... 🔄"):
+#             try:
+#                 # Get the absolute path of the current script directory
+#                 script_dir = os.path.dirname(os.path.abspath(__file__))
+
+#                 # Define paths for Real-ESRGAN executable and model directory
+#                 real_esrgan_exe = os.path.join(script_dir, "realesrgan-ncnn-vulkan.exe")
+#                 model_dir = os.path.join(script_dir, "models")
+#                 model_name = f"realesrgan-x4plus"
+
+#                 # Save the uploaded image temporarily
+#                 input_path = os.path.join(script_dir, f"input_image.{uploaded_file.name.split('.')[-1]}")
+#                 output_path = os.path.join(script_dir, "enhanced_image.png")
+#                 input_image = Image.open(uploaded_file)
+#                 input_image.save(input_path)
+
+#                 # Run Real-ESRGAN enhancement using subprocess
+#                 result = subprocess.run(
+#                     [
+#                         real_esrgan_exe,
+#                         "-i", input_path,
+#                         "-o", output_path,
+#                         "-n", model_name,
+#                         "-m", model_dir,
+#                     ],
+#                     check=True,
+#                     stdout=subprocess.PIPE,
+#                     stderr=subprocess.PIPE,
+#                 )
+
+#                 # Display enhanced image
+#                 st.success("✨ Image enhanced successfully!")
+#                 st.image(output_path, caption="Enhanced Image", use_column_width=True)
+
+#                 # Provide download link for the enhanced image
+#                 with open(output_path, "rb") as file:
+#                     st.download_button(
+#                         label="Download Enhanced Image",
+#                         data=file,
+#                         file_name="enhanced_image.png",
+#                         mime="image/png",
+#                     )
+
+#             except subprocess.CalledProcessError as e:
+#                 st.error(f"Enhancement failed with error:\n{e.stderr.decode()}")
+#             except Exception as e:
+#                 st.error(f"An unexpected error occurred: {e}")
+
+# # Footer
+# st.markdown(
+#     """
+#     <hr>
+#     <p style="text-align: center; color: #888;">Powered by <b>Real-ESRGAN</b> | Created with ❤️ using <b>Streamlit</b></p>
+#     """,
+#     unsafe_allow_html=True,
+# )
+
+
+
+
+
+
+
+
 import streamlit as st
 from PIL import Image
-import os
-import subprocess
+import torch
+from realesrgan import RealESRGAN
 
 # Set page configuration
 st.set_page_config(
@@ -122,8 +230,8 @@ uploaded_file = st.file_uploader(
 
 # Enhancement options section
 st.markdown("### ⚙️ Choose Enhancement Settings")
-enhancement_options = ["x2", "x3", "x4"]
-selected_model = st.selectbox(
+enhancement_options = [2, 3, 4]
+selected_scale = st.selectbox(
     "Select enhancement scale:",
     enhancement_options,
     help="Scale refers to the level of upscaling applied to the image.",
@@ -135,40 +243,24 @@ if uploaded_file:
     if st.button("Enhance Image"):
         with st.spinner("Enhancing your image... 🔄"):
             try:
-                # Get the absolute path of the current script directory
-                script_dir = os.path.dirname(os.path.abspath(__file__))
-
-                # Define paths for Real-ESRGAN executable and model directory
-                real_esrgan_exe = os.path.join(script_dir, "realesrgan-ncnn-vulkan.exe")
-                model_dir = os.path.join(script_dir, "models")
-                model_name = f"realesrgan-x4plus"
-
-                # Save the uploaded image temporarily
-                input_path = os.path.join(script_dir, f"input_image.{uploaded_file.name.split('.')[-1]}")
-                output_path = os.path.join(script_dir, "enhanced_image.png")
+                # Open the uploaded image
                 input_image = Image.open(uploaded_file)
-                input_image.save(input_path)
 
-                # Run Real-ESRGAN enhancement using subprocess
-                result = subprocess.run(
-                    [
-                        real_esrgan_exe,
-                        "-i", input_path,
-                        "-o", output_path,
-                        "-n", model_name,
-                        "-m", model_dir,
-                    ],
-                    check=True,
-                    stdout=subprocess.PIPE,
-                    stderr=subprocess.PIPE,
-                )
+                # Load Real-ESRGAN model
+                device = "cuda" if torch.cuda.is_available() else "cpu"
+                model = RealESRGAN(device, scale=selected_scale)
+                model.load_weights(f'RealESRGAN_x{selected_scale}plus.pth')  # Ensure weights are uploaded
+
+                # Enhance the image
+                enhanced_image = model.predict(input_image)
 
                 # Display enhanced image
                 st.success("✨ Image enhanced successfully!")
-                st.image(output_path, caption="Enhanced Image", use_column_width=True)
+                st.image(enhanced_image, caption="Enhanced Image", use_column_width=True)
 
-                # Provide download link for the enhanced image
-                with open(output_path, "rb") as file:
+                # Save and provide download link for the enhanced image
+                enhanced_image.save("enhanced_image.png")
+                with open("enhanced_image.png", "rb") as file:
                     st.download_button(
                         label="Download Enhanced Image",
                         data=file,
@@ -176,8 +268,6 @@ if uploaded_file:
                         mime="image/png",
                     )
 
-            except subprocess.CalledProcessError as e:
-                st.error(f"Enhancement failed with error:\n{e.stderr.decode()}")
             except Exception as e:
                 st.error(f"An unexpected error occurred: {e}")
 
