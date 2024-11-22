@@ -19,7 +19,7 @@ This project is a user-friendly web app for enhancing and upscaling images using
 - Python 3.8+
 - Clone the repository:
   ```bash
-  git clone [https://github.com/<your-username>/image-enhancer.git](https://github.com/saadtariq10/Image-Enhancer-Using-Real-ESRGAN)
+  git clone https://github.com/saadtariq10/Image-Enhancer-Using-Real-ESRGAN
   cd image-enhancer
 Install required dependencies:
 
@@ -34,3 +34,52 @@ bash
 Copy code
 streamlit run app.py
 Open the app in your browser at http://localhost:8501.
+🌐 Deployment on Streamlit Cloud
+Steps to Deploy
+Push this repository to GitHub:
+bash
+Copy code
+git add .
+git commit -m "Initial commit"
+git push origin main
+Go to Streamlit Cloud.
+Create a new app and connect your GitHub repository.
+Add Real-ESRGAN models and executable as files in the repo.
+Deploy the app and access your Streamlit-hosted URL.
+📂 Project Structure
+graphql
+Copy code
+image-enhancer/
+├── models/                     # Real-ESRGAN model files (bin & param)
+├── app.py                      # Main Streamlit app code
+├── realesrgan-ncnn-vulkan.exe  # Real-ESRGAN executable
+├── requirements.txt            # Python dependencies
+├── README.md                   # Project documentation
+🖼️ Preview
+
+📝 License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+✨ Credits
+Real-ESRGAN: GitHub Repository
+Streamlit: Streamlit Website
+yaml
+Copy code
+
+---
+
+### Notes:
+- Replace `saadtariq10/` with your GitHub username in the clone link.
+- You can add a real preview screenshot of your app under the **Preview** section after deployment.
+- Ensure your repository includes `requirements.txt` with the necessary Python libraries (e.g., `streamlit`, `pillow`). If not already created, let me know, and I’ll generate it for you.
+
+Let me know if you'd like additional details or adjustments! 🚀
+
+
+
+
+
+
+
+
+git clone [https://github.com/<your-username>/image-enhancer.git](https://github.com/saadtariq10/Image-Enhancer-Using-Real-ESRGAN)
