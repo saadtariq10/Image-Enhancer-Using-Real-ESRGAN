@@ -3,3 +3,4 @@ pillow
 torch
 realesrgan
 subprocess32==3.5.4
+opencv-python-headless
