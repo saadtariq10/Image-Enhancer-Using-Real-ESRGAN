@@ -19,7 +19,7 @@ This project is a user-friendly web app for enhancing and upscaling images using
 - Python 3.8+
 - Clone the repository:
   ```bash
-  git clone https://github.com/<your-username>/image-enhancer.git
+  git clone [https://github.com/<your-username>/image-enhancer.git](https://github.com/saadtariq10/Image-Enhancer-Using-Real-ESRGAN)
   cd image-enhancer
 Install required dependencies:
 
