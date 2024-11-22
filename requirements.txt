@@ -1,6 +1,13 @@
-streamlit
-pillow
+# pillow
+# torch
+# realesrgan
+# subprocess32
+# opencv-python-headless
+
+
+opencv-python-headless
 torch
 realesrgan
-subprocess32==3.5.4
-opencv-python-headless
+Pillow
+numpy
+streamlit
