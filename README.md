@@ -24,25 +24,22 @@ This project is a user-friendly web app for enhancing and upscaling images using
 
 Install required dependencies:
 
-bash
-Copy code
+  ```bash
 pip install -r requirements.txt
 Place Real-ESRGAN executable (realesrgan-ncnn-vulkan.exe) and models folder in the project directory.
 
 Run the App Locally
 Run the app locally:
 
-bash
-Copy code
+  ```bash
 streamlit run app.py
 Open the app in your browser at http://localhost:8501.
 
-🌐 Deployment on Streamlit Cloud
+## 🌐 Deployment on Streamlit Cloud
 Steps to Deploy
 Push this repository to GitHub:
 
-bash
-Copy code
+  ```bash
 git add .
 git commit -m "Initial commit"
 git push origin main
@@ -54,7 +51,7 @@ Add Real-ESRGAN models and executable as files in the repo.
 
 Deploy the app and access your Streamlit-hosted URL.
 
-📂 Project Structure
+## 📂 Project Structure
 bash
 Copy code
 image-enhancer/
@@ -66,10 +63,10 @@ image-enhancer/
 🖼️ Preview
 (Include a screenshot or link to a live demo here.)
 
-📝 License
+## 📝 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-✨ Credits
+## ✨ Credits
 Real-ESRGAN: GitHub Repository
 Streamlit: Streamlit Website
 Notes:
