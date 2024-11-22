@@ -16,21 +16,12 @@ This project is a user-friendly web app for enhancing and upscaling images using
 ## 🛠️ Setup & Usage
 
 ### Prerequisites
+
 - Python 3.8+
-- Clone the repository:
-  ```bash
-  git clone [https://github.com/<your-username>/image-enhancer.git](https://github.com/saadtariq10/Image-Enhancer-Using-Real-ESRGAN)
-  cd image-enhancer
-Install required dependencies:
 
-bash
-Copy code
-pip install -r requirements.txt
-Place Real-ESRGAN executable (realesrgan-ncnn-vulkan.exe) and models folder in the project directory.
+### Clone the Repository
 
-Run the App
-Run the app locally:
-bash
-Copy code
-streamlit run app.py
-Open the app in your browser at http://localhost:8501.
+```bash
+git clone https://github.com/saadtariq10/Image-Enhancer-Using-Real-ESRGAN
+cd image-enhancer
+
