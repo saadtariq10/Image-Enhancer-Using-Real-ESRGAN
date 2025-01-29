@@ -1,27 +1,48 @@
-# ✨ Image Enhancer Using Real-ESRGAN
+# Image Enhancer ✨
 
-This project is a user-friendly web app for enhancing and upscaling images using **Real-ESRGAN** models. Built with **Streamlit**, the app provides a clean interface for uploading images, selecting enhancement scales, and downloading enhanced versions.
+Enhance your images effortlessly using the advanced Real-ESRGAN model. This simple web app allows you to upload an image, choose an enhancement scale, and process it using state-of-the-art deep learning models for image upscaling.
 
----
+## Features
+- **Image Upload**: Upload your image in JPG, PNG, or JPEG format.
+- **Enhancement Settings**: Choose from different enhancement scales (2x, 3x, 4x).
+- **Real-ESRGAN Processing**: Enhance your image using the Real-ESRGAN model for improved resolution.
+- **Download Enhanced Image**: After the image is enhanced, download the improved version with just a click.
 
-## 🚀 Features
+## Requirements
+To run this app locally, make sure you have the following libraries installed:
 
-- **Upload & Enhance**: Easily upload low-resolution images and enhance them with AI.
-- **Multiple Scales**: Choose from `x2`, `x3`, or `x4` enhancement scales.
-- **Download Enhanced Image**: Get the high-resolution output with a single click.
-- **Intuitive UI**: Designed with Streamlit for a seamless user experience.
+- Python 3.x
+- Streamlit
+- Pillow
+- torch
+- realesrgan
 
----
-
-## 🛠️ Setup & Usage
-
-### Prerequisites
-
-- Python 3.8+
-
-### Clone the Repository
+You can install the necessary Python libraries with:
 
 ```bash
-git clone https://github.com/saadtariq10/Image-Enhancer-Using-Real-ESRGAN
-cd image-enhancer
+pip install streamlit Pillow torch realesrgan
+```
 
+## How to Use
+1. Clone or download this repository.
+2. Install the required dependencies as mentioned above.
+3. Run the Streamlit app by navigating to the directory and executing:
+
+```bash
+streamlit run app.py
+```
+
+4. Once the app opens in your browser, simply upload an image.
+5. Select the enhancement scale (2x, 3x, or 4x).
+6. Click on "Enhance Image" to start the image enhancement process.
+7. After processing, download your enhanced image!
+
+## Model Information
+The app uses the [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN) model for image enhancement. Make sure the weights for the Real-ESRGAN model are properly set (`RealESRGAN_x{scale}plus.pth`).
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+- Powered by [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN) for image enhancement.
+- Built with ❤️ using [Streamlit](https://streamlit.io/).
