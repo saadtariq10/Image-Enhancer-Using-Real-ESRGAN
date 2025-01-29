@@ -1,5 +1,8 @@
 # Image Enhancer ✨
 
+![Image Enhancer Demo](https://github.com/saadtariq10/Image-Enhancer-Using-Real-ESRGAN/blob/main/image-enhancer.gif)
+
+
 Enhance your images effortlessly using the advanced Real-ESRGAN model. This simple web app allows you to upload an image, choose an enhancement scale, and process it using state-of-the-art deep learning models for image upscaling.
 
 ## Features
